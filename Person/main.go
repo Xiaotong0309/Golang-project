@@ -2,6 +2,16 @@ package main
 
 import "fmt"
 
+type contactInfo struct {
+	email   string
+	zipCode int
+}
+type person struct {
+	firstName string
+	lastName  string
+	contact   contactInfo
+}
+
 func main() {
 	/*
 		type person struct {
@@ -17,15 +27,7 @@ func main() {
 		p2.lastName = "Stark"
 		fmt.Printf("%+v\n", p2)
 	*/
-	type contactInfo struct {
-		email   string
-		zipCode int
-	}
-	type person struct {
-		firstName string
-		lastName  string
-		contact   contactInfo
-	}
+
 	p3 := person{
 		firstName: "Alex",
 		lastName:  "Stark",
@@ -35,4 +37,12 @@ func main() {
 		},
 	}
 	fmt.Printf("%+v\n", p3)
+
+	p3.update("Bill")
+	fmt.Printf("%+v\n", p3)
+
+}
+
+func (p *person) update(name string) { // must outside main
+	(*p).firstName = name
 }
